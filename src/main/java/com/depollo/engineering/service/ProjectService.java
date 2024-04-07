@@ -78,11 +78,21 @@ public class ProjectService {
     }
 
 
-    public ArrayList getProjectNames() {
-        ArrayList names = new ArrayList<>();
+    public ArrayList getName() {
+        ArrayList n = new ArrayList<>();
         for (ProjectEntity entity : repository.findAll()) {
-            names.add(entity.getName());
+            n.add(entity.getName());
         }
-        return names;
+        return n;
+    }
+
+    public ArrayList getProjectNamesThatValueIsBiggerThan(float value){
+        ArrayList n = new ArrayList<>();
+        for (ProjectEntity entity : repository.findAll()) {
+            if(entity.getValue() > value){
+                n.add(entity.getName());
+            }
+        }
+        return n;
     }
 }
