@@ -7,8 +7,10 @@ import com.depollo.engineering.repository.ProjectRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.List;
 
 @Service
 public class ProjectService {
@@ -86,11 +88,36 @@ public class ProjectService {
         return n;
     }
 
-    public ArrayList getProjectNamesThatValueIsBiggerThan(float value){
+    public ArrayList biggerThan(float value) {
         ArrayList n = new ArrayList<>();
         for (ProjectEntity entity : repository.findAll()) {
-            if(entity.getValue() > value){
+            if (entity.getValue() > value) {
                 n.add(entity.getName());
+            }
+        }
+        return n;
+    }
+
+    public ArrayList lessThan(float value) {
+        ArrayList n = new ArrayList<>();
+        for (ProjectEntity entity : repository.findAll()) {
+            if (entity.getValue() < value) {
+                n.add(entity.getName());
+            }
+        }
+        return n;
+    }
+
+    public HashMap sumByGroup() {
+
+        HashMap n = new HashMap<>();
+        List list = repository.findAll();
+        for (Object object : list) {
+            ProjectEntity entity = (ProjectEntity) object;
+            if (n.containsKey(entity.getName())) {
+                n.put(entity.getName(), (float) n.get(entity.getName()) + entity.getValue());
+            } else {
+                n.put(entity.getName(), entity.getValue());
             }
         }
         return n;
