@@ -78,8 +78,8 @@ public class ProjectService {
     }
 
 
-    public ArrayList<String> getProjectNames() {
-        ArrayList<String> names = new ArrayList<>();
+    public ArrayList getProjectNames() {
+        ArrayList names = new ArrayList<>();
         for (ProjectEntity entity : repository.findAll()) {
             names.add(entity.getName());
         }
