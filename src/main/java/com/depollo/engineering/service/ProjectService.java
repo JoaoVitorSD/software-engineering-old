@@ -6,6 +6,7 @@ import com.depollo.engineering.entity.ProjectEntity;
 import com.depollo.engineering.repository.ProjectRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -65,5 +66,23 @@ public class ProjectService {
         response.setValue(entity.getValue());
         response.setDescription(entity.getDescription());
         return response;
+    }
+
+
+    public Float getAvaregeValue() {
+        float sum = 0;
+        for (ProjectEntity entity : repository.findAll()) {
+            sum += entity.getValue();
+        }
+        return sum / repository.count();
+    }
+
+
+    public ArrayList<String> getProjectNames() {
+        ArrayList<String> names = new ArrayList<>();
+        for (ProjectEntity entity : repository.findAll()) {
+            names.add(entity.getName());
+        }
+        return names;
     }
 }

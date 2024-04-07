@@ -34,5 +34,10 @@ public class ProjectController {
         return new ResponseEntity<>(service.get(id), HttpStatus.OK);
     }
 
+    @GetMapping("average")
+    public ResponseEntity<Float> getAverage(){
+        return new ResponseEntity<>(service.getAvaregeValue(), HttpStatus.OK);
+    }
+
 
 }
