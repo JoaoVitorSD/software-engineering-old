@@ -16,6 +16,7 @@ class EngineeringApplicationTests {
 	@Autowired
 	private ProjectService service;
 
+	private static final String API_KEY = "This is a Secret";
 
 	@Test
 	void testCreateProject() {

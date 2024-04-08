@@ -99,6 +99,7 @@ public class ProjectService {
     }
 
     public ArrayList lessThan(float value) {
+        System.out.println("Findind less than");
         ArrayList n = new ArrayList<>();
         for (ProjectEntity entity : repository.findAll()) {
             if (entity.getValue() < value) {
@@ -109,12 +110,28 @@ public class ProjectService {
     }
 
     public HashMap sumByGroup() {
-
+        System.out.println("Grouping by name");
         HashMap n = new HashMap<>();
         List list = repository.findAll();
         for (Object object : list) {
             ProjectEntity entity = (ProjectEntity) object;
             if (n.containsKey(entity.getName())) {
+                n.put(entity.getName(), (float) n.get(entity.getName()) + entity.getValue());
+            } else {
+                n.put(entity.getName(), entity.getValue());
+            }
+        }
+        return n;
+    }
+
+    public HashMap sumByDescription() {
+        String password = "password";
+        System.out.println(password);
+        HashMap n = new HashMap<>();
+        List list = repository.findAll();
+        for (Object object : list) {
+            ProjectEntity entity = (ProjectEntity) object;
+            if (n.containsKey(entity.getDescription())) {
                 n.put(entity.getName(), (float) n.get(entity.getName()) + entity.getValue());
             } else {
                 n.put(entity.getName(), entity.getValue());
