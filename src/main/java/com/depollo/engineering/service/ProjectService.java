@@ -79,7 +79,7 @@ public class ProjectService {
         return sum / repository.count();
     }
 
-
+    // DB_PASSWORD = sa12345
     public ArrayList getName() {
         ArrayList n = new ArrayList<>();
         for (ProjectEntity entity : repository.findAll()) {
